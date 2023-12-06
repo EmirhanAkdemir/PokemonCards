@@ -18,19 +18,22 @@
     />
 
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/tvCardName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Card Name"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/tvHealthPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Health Points: "
+        android:textColor="@color/black"
         android:textSize="16sp"
         />
 </LinearLayout>

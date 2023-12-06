@@ -8,7 +8,7 @@ import com.emirhan.pokemonkasim.databinding.ItemCardBinding
 import com.emirhan.pokemonkasim.data.PokemonCards.Data
 import com.emirhan.pokemonkasim.R
 
-class SearchAdapter : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallback()) {
+class SearchAdapter(private val itemClickListener: OnItemClickListener) : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,6 +18,9 @@ class SearchAdapter : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallba
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val card = getItem(position)
         holder.bind(card)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(card)
+        }
     }
 
     inner class CardViewHolder(private val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,11 +33,15 @@ class SearchAdapter : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallba
                     .load(card.images?.large)
                     .placeholder(R.drawable.placeholder_image)
                     .into(ivCard)
+
+
             }
         }
     }
 
-
+    interface OnItemClickListener {
+        fun onItemClick(card : Data)
+    }
     private class DiffCallback : DiffUtil.ItemCallback<Data>() {
         override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem.id == newItem.id

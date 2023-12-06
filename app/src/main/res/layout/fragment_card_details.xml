@@ -12,12 +12,9 @@
 
     <ImageView
         android:id="@+id/ivCardImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_image"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,20 +23,24 @@
         android:id="@+id/tvCardName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card Name"
-        android:textSize="20sp"
-        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:text="Name :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCardImage" />
 
     <TextView
-        android:id="@+id/tvCardArtist"
+        android:id="@+id/tvArtistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Artist Name"
+        android:text="Artist : "
+        android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCardName" />
@@ -49,9 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCardArtist" />
+        app:layout_constraintTop_toBottomOf="@+id/tvArtistName"
+        app:layout_constraintVertical_bias="0.147" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

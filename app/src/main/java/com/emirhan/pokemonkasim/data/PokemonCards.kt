@@ -2,6 +2,7 @@ package com.emirhan.pokemonkasim.data
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PokemonCards(
     @SerializedName("count")
@@ -69,10 +70,11 @@ data class PokemonCards(
         @SerializedName("types")
         val types: List<String?>?,
         @SerializedName("weaknesses")
-        val weaknesses: List<Weaknesse?>?
-    ) {
+        val weaknesses: List<Weaknesse?>?,
+        var isFavorite: Boolean = false
+    ) : Serializable {
         data class Ability(
-            @SerializedName("name")
+            @SerializedName("name")sdsadsda
             val name: String?,
             @SerializedName("text")
             val text: String?,

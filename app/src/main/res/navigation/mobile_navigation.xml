@@ -9,7 +9,18 @@
         android:id="@+id/navigation_search"
         android:name="com.emirhan.pokemonkasim.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+    <action
+        android:id="@+id/action_searchFragment_to_cardDetailsFragment"
+        app:destination="@+id/cardDetailsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cardDetailsFragment"
+        android:name="com.emirhan.pokemonkasim.CardDetailsFragment"
+        android:label="CardDetailsFragment"
+        tools:layout="@layout/fragment_card_details">
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorites"
