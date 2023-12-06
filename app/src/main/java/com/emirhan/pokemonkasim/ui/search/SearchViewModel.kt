@@ -42,4 +42,8 @@ class SearchViewModel : ViewModel() {
             }
         })
     }
+    fun addToFavorites(card: PokemonCards.Data) {
+        card.isFavorite = true
+
+    }
 }

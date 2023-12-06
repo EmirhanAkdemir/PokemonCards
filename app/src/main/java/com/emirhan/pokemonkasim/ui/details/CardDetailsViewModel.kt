@@ -1,4 +1,4 @@
-package com.emirhan.pokemonkasim
+package com.emirhan.pokemonkasim.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

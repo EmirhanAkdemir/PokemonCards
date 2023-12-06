@@ -1,6 +1,7 @@
 package com.emirhan.pokemonkasim.ui.search
 
-import SearchAdapter
+import com.emirhan.pokemonkasim.adapter.SearchAdapter
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +11,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emirhan.pokemonkasim.FavoritesViewModelFactory
 import com.emirhan.pokemonkasim.R
 import com.emirhan.pokemonkasim.data.PokemonCards
 import com.emirhan.pokemonkasim.databinding.FragmentSearchBinding
+import com.emirhan.pokemonkasim.ui.favorites.FavoritesViewModel
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels()
+    private val favoritesViewModel: FavoritesViewModel by viewModels { FavoritesViewModelFactory(requireContext().getSharedPreferences("pref_favorites", Context.MODE_PRIVATE)) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,9 +39,14 @@ class SearchFragment : Fragment() {
         val adapter = SearchAdapter(object : SearchAdapter.OnItemClickListener {
             override fun onItemClick(card: PokemonCards.Data) {
                 navigateToCardDetails(card)
-
+            }
+        }, object : SearchAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(card: PokemonCards.Data) {
+                // Handle long click in SearchFragment, probably remove from favorites
+                favoritesViewModel.removeFromFavorites(card)
             }
         })
+
         binding.rvSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearch.adapter = adapter
 
@@ -52,7 +62,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun navigateToCardDetails(card : PokemonCards.Data) {
+    private fun navigateToCardDetails(card: PokemonCards.Data) {
         val bundle = Bundle().apply {
             putSerializable("card", card)
         }

@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/cardDetailsFragment"
-        android:name="com.emirhan.pokemonkasim.CardDetailsFragment"
+        android:name="com.emirhan.pokemonkasim.ui.details.CardDetailsFragment"
         android:label="CardDetailsFragment"
         tools:layout="@layout/fragment_card_details">
     </fragment>

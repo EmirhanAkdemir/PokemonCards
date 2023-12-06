@@ -8,7 +8,7 @@
     android:paddingTop="16dp"
     android:paddingEnd="16dp"
     android:paddingBottom="16dp"
-    tools:context=".CardDetailsFragment">
+    tools:context=".ui.details.CardDetailsFragment">
 
     <ImageView
         android:id="@+id/ivCardImage"

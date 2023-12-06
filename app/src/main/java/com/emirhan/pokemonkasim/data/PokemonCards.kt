@@ -71,10 +71,10 @@ data class PokemonCards(
         val types: List<String?>?,
         @SerializedName("weaknesses")
         val weaknesses: List<Weaknesse?>?,
-        var isFavorite: Boolean = false
+        var isFavorite: Boolean? = false
     ) : Serializable {
         data class Ability(
-            @SerializedName("name")sdsadsda
+            @SerializedName("name")
             val name: String?,
             @SerializedName("text")
             val text: String?,

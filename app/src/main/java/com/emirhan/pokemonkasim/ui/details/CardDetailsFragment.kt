@@ -1,19 +1,18 @@
-package com.emirhan.pokemonkasim
+package com.emirhan.pokemonkasim.ui.details
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.emirhan.pokemonkasim.FavoritesViewModelFactory
+import com.emirhan.pokemonkasim.R
 import com.emirhan.pokemonkasim.data.PokemonCards
 import com.emirhan.pokemonkasim.databinding.FragmentCardDetailsBinding
 import com.emirhan.pokemonkasim.ui.favorites.FavoritesViewModel
@@ -22,7 +21,10 @@ class CardDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentCardDetailsBinding
     private val viewModel : CardDetailsViewModel by viewModels()
-    private val favoritesViewModel : FavoritesViewModel by viewModels()
+    private val favoritesViewModel: FavoritesViewModel by viewModels { FavoritesViewModelFactory(requireContext().getSharedPreferences("pref_favorites", Context.MODE_PRIVATE)) }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
