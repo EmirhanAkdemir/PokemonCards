@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emirhan.pokemonkasim.FavoritesViewModelFactory
+import com.emirhan.pokemonkasim.R
 import com.emirhan.pokemonkasim.data.PokemonCards
 import com.emirhan.pokemonkasim.databinding.FragmentFavoritesBinding
+import com.emirhan.pokemonkasim.ui.search.SearchFragment
 
 class FavoritesFragment : Fragment() {
 
@@ -32,6 +35,7 @@ class FavoritesFragment : Fragment() {
 
         val adapter = FavoritesAdapter(object : FavoritesAdapter.OnItemClickListener {
             override fun onItemClick(card: PokemonCards.Data) {
+                navigateToCardDetails(card)
 
             }
 
@@ -49,5 +53,15 @@ class FavoritesFragment : Fragment() {
         favoritesViewModel.favoriteCards.observe(viewLifecycleOwner) { favoriteCards ->
             adapter.submitList(favoriteCards)
         }
+    }
+    private fun navigateToCardDetails(card: PokemonCards.Data) {
+        val bundle = Bundle().apply {
+            putSerializable("card", card)
+        }
+
+        findNavController().navigate(
+            R.id.action_favoritesFragment_to_cardDetailsFragment,
+            bundle
+        )
     }
 }
