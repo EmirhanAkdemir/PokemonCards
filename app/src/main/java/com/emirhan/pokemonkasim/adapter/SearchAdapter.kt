@@ -9,17 +9,21 @@ import com.bumptech.glide.Glide
 import com.emirhan.pokemonkasim.R
 import com.emirhan.pokemonkasim.data.PokemonCards.Data
 import com.emirhan.pokemonkasim.databinding.ItemCardBinding
+import com.emirhan.pokemonkasim.ui.favorites.FavoritesViewModel
 
 class SearchAdapter(
     private val itemClickListener: OnItemClickListener,
-    private val itemLongClickListener: OnItemLongClickListener
+    private val itemLongClickListener: OnItemLongClickListener,
+    private val favoritesViewModel: FavoritesViewModel
 ) : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallback()) {
 
     private var favoriteCards: List<Data> = emptyList()
 
-    fun updateFavoriteCards(cards: List<Data>) {
-        favoriteCards = cards
-        notifyDataSetChanged()
+    init {
+        favoritesViewModel.favoriteCards.observeForever {
+            favoriteCards = it
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {

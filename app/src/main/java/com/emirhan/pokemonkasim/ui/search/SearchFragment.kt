@@ -51,10 +51,9 @@ class SearchFragment : Fragment() {
                 favoritesViewModel.addToFavorites(card)
                 Toast.makeText(requireContext(), "Card added to favorites", Toast.LENGTH_SHORT).show()
             }
-        })
-
-        val favoriteCards : List<PokemonCards.Data> = emptyList()
-        adapter.updateFavoriteCards(favoriteCards)
+        },
+            favoritesViewModel
+        )
 
         binding.rvSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearch.adapter = adapter

@@ -30,6 +30,10 @@ class FavoritesViewModel(private val sharedPreferences: SharedPreferences) : Vie
         _favoriteCards.postValue(favoritesList)
     }
 
+    fun getFavoriteCards(): List<PokemonCards.Data> {
+        return _favoriteCards.value.orEmpty()
+    }
+
 
     private fun saveFavoritesToSharedPreferences(favoritesList: List<PokemonCards.Data>) {
         val editor = sharedPreferences.edit()
