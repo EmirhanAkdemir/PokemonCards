@@ -4,4 +4,5 @@
     <string name="title_favorites">Favorites</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_by_hp">Search by health points</string>
 </resources>

@@ -32,7 +32,7 @@ class FavoritesFragment : Fragment() {
 
         val adapter = FavoritesAdapter(object : FavoritesAdapter.OnItemClickListener {
             override fun onItemClick(card: PokemonCards.Data) {
-                // Handle item click in FavoritesFragment if needed
+
             }
 
             override fun onItemLongClick(card: PokemonCards.Data) {
