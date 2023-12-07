@@ -21,8 +21,6 @@ class CardDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentCardDetailsBinding
     private val viewModel : CardDetailsViewModel by viewModels()
-    private val favoritesViewModel: FavoritesViewModel by viewModels { FavoritesViewModelFactory(requireContext().getSharedPreferences("pref_favorites", Context.MODE_PRIVATE)) }
-
 
 
 
@@ -52,21 +50,8 @@ class CardDetailsFragment : Fragment() {
         }
 
         binding.root.setOnLongClickListener {
-            addToFavorites()
             true
         }
-
-        favoritesViewModel.favoriteCards.observe(viewLifecycleOwner) { favoriteCards ->
-
-        }
-    }
-
-    private fun addToFavorites() {
-        val card = viewModel.cardDetails.value
-        card?.let {
-            favoritesViewModel.addToFavorites(it)
-        }
-        Toast.makeText(requireContext(), "Card added to favorites", Toast.LENGTH_SHORT).show()
     }
 
     private fun observeCardDetails() {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,6 +25,7 @@ class SearchFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private val viewModel: SearchViewModel by viewModels()
     private val favoritesViewModel: FavoritesViewModel by viewModels { FavoritesViewModelFactory(requireContext().getSharedPreferences("pref_favorites", Context.MODE_PRIVATE)) }
+
 
 
     override fun onCreateView(
@@ -46,9 +48,13 @@ class SearchFragment : Fragment() {
             }
         }, object : SearchAdapter.OnItemLongClickListener {
             override fun onItemLongClick(card: PokemonCards.Data) {
-                favoritesViewModel.removeFromFavorites(card)
+                favoritesViewModel.addToFavorites(card)
+                Toast.makeText(requireContext(), "Card added to favorites", Toast.LENGTH_SHORT).show()
             }
         })
+
+        val favoriteCards : List<PokemonCards.Data> = emptyList()
+        adapter.updateFavoriteCards(favoriteCards)
 
         binding.rvSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearch.adapter = adapter
@@ -66,6 +72,7 @@ class SearchFragment : Fragment() {
             }
         }
     }
+
 
     private fun navigateToCardDetails(card: PokemonCards.Data) {
         val bundle = Bundle().apply {

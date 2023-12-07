@@ -14,6 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SearchViewModel : ViewModel() {
 
+    private val _favoriteCards = MutableLiveData<List<PokemonCards.Data>>()
+
     val _searchResults = MutableLiveData<List<PokemonCards.Data>?>()
     val searchResults: LiveData<List<PokemonCards.Data>?> get() = _searchResults
 
@@ -23,6 +25,7 @@ class SearchViewModel : ViewModel() {
         .build()
 
     private val apiService = retrofit.create(PokemonApiService::class.java)
+
 
     fun searchCardsByHealthPoints(hp : Int) {
         val call = apiService.getCardsByHealthPoints(hp)

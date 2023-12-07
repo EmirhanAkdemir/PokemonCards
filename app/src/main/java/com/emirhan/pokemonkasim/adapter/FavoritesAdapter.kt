@@ -13,6 +13,13 @@ import com.emirhan.pokemonkasim.databinding.ItemCardBinding
 class FavoritesAdapter(private val itemClickListener: OnItemClickListener) :
     ListAdapter<Data, FavoritesAdapter.CardViewHolder>(DiffCallback()) {
 
+    private var favoriteCards: List<Data> = emptyList()
+
+    fun updateFavoriteCards(cards: List<Data>) {
+        favoriteCards = cards
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding =
             ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)

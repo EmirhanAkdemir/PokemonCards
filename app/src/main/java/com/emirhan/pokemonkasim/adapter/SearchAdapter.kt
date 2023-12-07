@@ -15,11 +15,12 @@ class SearchAdapter(
     private val itemLongClickListener: OnItemLongClickListener
 ) : ListAdapter<Data, SearchAdapter.CardViewHolder>(DiffCallback()) {
 
-    var favoriteCards: List<Data> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var favoriteCards: List<Data> = emptyList()
+
+    fun updateFavoriteCards(cards: List<Data>) {
+        favoriteCards = cards
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding =

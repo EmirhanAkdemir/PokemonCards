@@ -21,11 +21,15 @@ class FavoritesViewModel(private val sharedPreferences: SharedPreferences) : Vie
     init {
         val favoritesJson = sharedPreferences.getString(PREF_KEY_FAVORITES, null)
         val favoritesList = favoritesJson?.let {
-            Gson().fromJson<List<PokemonCards.Data>>(it, object : TypeToken<List<PokemonCards.Data>>() {}.type)
+            Gson().fromJson<List<PokemonCards.Data>>(
+                it,
+                object : TypeToken<List<PokemonCards.Data>>() {}.type
+            )
         } ?: emptyList()
 
-        _favoriteCards.value = favoritesList
+        _favoriteCards.postValue(favoritesList)
     }
+
 
     private fun saveFavoritesToSharedPreferences(favoritesList: List<PokemonCards.Data>) {
         val editor = sharedPreferences.edit()

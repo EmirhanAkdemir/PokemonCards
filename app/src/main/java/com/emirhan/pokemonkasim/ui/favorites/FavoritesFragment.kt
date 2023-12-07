@@ -40,6 +40,9 @@ class FavoritesFragment : Fragment() {
             }
         })
 
+        val favoriteCards : List<PokemonCards.Data> = emptyList()
+        adapter.submitList(favoriteCards)
+
         binding.rvFavorites.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavorites.adapter = adapter
 
